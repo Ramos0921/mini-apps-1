@@ -1,0 +1,31 @@
+body{
+  font-family: "Arial", sans-serif;
+  font-size: 35px;
+  background-color:gray;
+}
+section{
+  text-align: center;
+}
+
+.gameboard{
+  display: grid;
+  grid-template-columns: repeat(3,auto);
+  width: 300px;
+  margin: 75px auto;
+}
+.square{
+  font-family: "Permanent Marker",cursive;
+  width: 100px;
+  height: 100px;
+  box-shadow: 0 0 0 1px #333333;
+  border: 1px solid #333333;
+  cursor: pointer;
+  line-height: 100px;
+  font-size: 60px;
+}
+
+#sq0,
+#sq1,
+#sq2{
+  border-top: none;
+}
