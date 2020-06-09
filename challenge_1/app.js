@@ -1,4 +1,17 @@
 
+var personOne = prompt("Player one enter your Name: ")
+var playerOne = document.querySelector('.playerOne');
+playerOne.innerHTML= personOne;
+
+var personTwo = prompt("Player two enter your Name: ")
+var playerTwo = document.querySelector('.playerTwo');
+playerTwo.innerHTML= personTwo;
+
+var countOne = 0;
+var scorePlayerOne = document.querySelector('.scoreOne');
+var countTwo = 0;
+var scorePlayerTwo = document.querySelector('.scoreTwo');
+
     //create a variable to target the gameStatus class in HTML
     //use document.querySelector('.classname) takes a class name as parameter
 var gameStatus = document.querySelector('.gameStatus')
@@ -16,11 +29,31 @@ var board = ['','','','','','','','',''];
 var playerTurn = function (player){
       //returns  a message in backtics; so it can be rendered to the dom
       //message will include player that is passed as parameter
-  return `You are up player ${player}`;
+      if(player === "X"){
+        player = personOne;
+      }
+      if(player === "O"){
+        player = personTwo;
+      }
+
+  return `IT IS YOUR TURN ${player}`;
 };
 
 var winMessage = function(player){
-  return `${player} WON!!! Press restart game button to play again`
+
+  if(player === "X"){
+    player = personOne;
+    countOne ++;
+    scorePlayerOne.innerHTML= countOne;
+  }
+  if(player === "O"){
+    player = personTwo;
+    countTwo ++;
+    scorePlayerTwo.innerHTML= countTwo;
+  }
+
+
+  return `${player} WON!!! PLAY AGAIN!`
 }
 
     //use .innerHTML to render a message to HTML page under class .gameStatus
@@ -108,7 +141,7 @@ var checkPlay = function(){
       //if tie is true the game is a tie
     if(tie){
       //return a tie message to the dom
-     return gameStatus.innerHTML = `THE GAME IS A DRAW! Play again by clicking the restart button!`
+     return gameStatus.innerHTML = `THE GAME IS A DRAW! PLAY AGAIN!`
     }
 
 
@@ -145,7 +178,8 @@ var restartGameClick = function(click){
       //set game to true
   gameOn=true;
      //reset current play to X
-  currentPlayer = 'X';
+
+  currentPlayer = player;
       //clear the open board in our JS
   board = ['','','','','','','','',''];
       //change the rendered message on our dom to the reset current player
@@ -176,3 +210,13 @@ var restart = document.querySelector('.gameRestart');
     //use. addEventListener('cick,method) to set an even listenter
 restart.addEventListener('click',restartGameClick);
     //document.querySelector('.gameRestart').addEventListener('click',restartGameClick)
+
+var resetPlayerScores= function(){
+      countOne = 0;
+      scorePlayerOne.innerHTML= countOne;
+      countTwo= 0;
+      scorePlayerTwo.innerHTML= countTwo;
+}
+
+var resestScores = document.querySelector('.scoreRestart');
+resestScores.addEventListener('click',resetPlayerScores);
