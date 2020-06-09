@@ -9,9 +9,15 @@
   <link rel = "stylesheet" href = "styles.css"/>
 </head>
 <body>
+
+  <!--Section element wraps board -->
   <section>
+     <!--h1 for the title of the board: class gameTitle for css use-->
     <h1 class = "gameTitle">TIC TAC TOE</h1>
+     <!-- div to warp the square of the board-->
     <div class = 'gameboard'>
+      <!--Board should have 9 square: 3X3-->
+      <!--Each square shoudl have id, attribute, and class-->
       <!--DATA-CELL-INDEX ATTIRBUTE ALLOWS FOR TRACKING OG CLICKS-->
       <div id = "sq0" data-square-index="0" class = "square"></div>
       <div id = "sq1" data-square-index="1" class = "square"></div>
@@ -23,30 +29,51 @@
       <div id = "sq7" data-square-index="7" class = "square"></div>
       <div id = "sq8" data-square-index="8" class = "square"></div>
     </div>
-    <button class = "gameRestart">CLEAR THE BOARD</button>
-    <h2 class = "gameStatus"></h2>
 
+     <!--clear board button with class gameReset-->
+    <button class = "gameRestart">CLEAR THE BOARD</button>
+     <!--h2 element where JS will render game status messages-->
+    <h2 class = "gameStatus"></h2>
   </section>
 
+
+
+  <!-- Table element  to contain the player scores use: alight center-->
   <table align="center">
+    <!--caption element to display name of table-->
     <caption>SCORES</caption>
+    <!--first Table Row element contains headers -->
     <tr>
+      <!--table head for players-->
       <th>Players</th>
+      <!--table head for score-->
       <th>Score</th>
     </tr>
+    <!--second table row for first player-->
     <tr>
+      <!--table data contains class playerone: can be targted from JS and CSS-->
       <td class = "playerOne">player one</td>
+      <!--table data for score of player one contains class scoreOne to be targeted by JS and CSS-->
       <td class = "scoreOne">0</td>
     </tr>
     <tr>
+      <!--table data contains class playerTwo: can be targted from JS and CSS-->
       <td class = "playerTwo">player two</td>
+      <!--table data for score of player two contains class scoreTwo to be targeted by JS and CSS-->
       <td class = "scoreTwo">0</td>
     </tr>
   </table>
+
+  <!-- Div to wrap reset scores button: use align center to center button-->
   <div align = "center">
+    <!-- button element with class scoreRestart: can be targeted by class in JS and CSS-->
     <button class = "scoreRestart">RESET SCORES</button>
   </div>
+
+
   <!--LINKS APPS JS TO OUR HTML-->
   <script src = "app.js"></script>
+
+
 </body>
 </html>

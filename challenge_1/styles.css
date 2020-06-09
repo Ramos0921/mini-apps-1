@@ -1,18 +1,43 @@
+
+/*body targets body element sets
+  font to arail sans Serif
+  font size to about 30 px
+  background colr to grey
+  text color to dark red
+*/
 body{
   font-family: "Arial", sans-serif;
   font-size: 35px;
   background-color:gray;
   color: rgb(104, 29, 29);
 }
+
+/*section
+  sets text to center of page
+*/
 section{
   text-align: center;
 }
+
+/* gameRestart is the button
+  set outline to black
+  border
+  set font size
+  set font weigth
+*/
 .gameRestart{
   outline: black;
   border: 10px 20px;
   font-size: 20px;
   font-weight: bold;
 }
+
+/*
+  hover for gamerestart button
+  change cursor to pointer
+  background to dark gray
+  when hovered turn text red
+*/
 .gameRestart:hover{
   cursor: pointer;
   background: #333333;
@@ -20,6 +45,14 @@ section{
 }
 
 
+/*gameboard
+  set display to grid
+  grid template sets 3 columns
+  set height
+  set width
+  set a margin
+  justify the table center
+*/
 .gameboard{
   display: grid;
   grid-template-columns: auto auto auto;
@@ -28,16 +61,27 @@ section{
   margin: 75px auto;
   justify-content: center;
 }
+
+
+/*
+  set font of X's and O's
+  set width
+  set height
+  border to a solid dark gray line
+  line height
+  set font size
+*/
 .square{
-  font-family: "Permanent Marker",cursive;
+  font-family: "Arial",sans-serif;
   width: 100px;
   height: 100px;
   border: 10px solid #333333;
   cursor: pointer;
   line-height: 100px;
-  font-size: 60px;
+  font-size: 80px;
 }
 
+/* will remove the outer lines to create a tic tac toe board ********/
 #sq0,
 #sq1,
 #sq2{
@@ -59,14 +103,18 @@ section{
 #sq8{
   border-right: none;
 }
+/**************************************************************/
 
+/* set board of the scores table*/
 table, th,td{
   border: 3px solid black;
   border-collapse: collapse;
 }
+/*set padding between the table head and table data*/
 th,td{
   padding: 15px;
 }
+
 th{
   text-align: left;
 }
@@ -74,12 +122,19 @@ table{
   border-spacing: 22px;
 }
 
+/* set teh score reset button
+  outline to black
+  border
+  font size
+  font wiegth
+*/
 .scoreRestart{
   outline: black;
   border: 10px 20px;
   font-size: 20px;
   font-weight: bold;
 }
+/*set hover for score reset buttons*/
 .scoreRestart:hover{
   cursor: pointer;
   background: #333333;

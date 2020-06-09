@@ -1,66 +1,105 @@
 
-var personOne = prompt("Player one enter your Name: ")
+//****** Player one ***************** */
+  //prompt first player to enter name;
+var personOne = prompt("Player one enter your Name: ");
+  //use querySelector so target playerOne in scores table
 var playerOne = document.querySelector('.playerOne');
+  //change plyer one in table to the name of player promt
 playerOne.innerHTML= personOne;
+
+//****Player two************************* */
 
 var personTwo = prompt("Player two enter your Name: ")
 var playerTwo = document.querySelector('.playerTwo');
 playerTwo.innerHTML= personTwo;
 
+
+
+  //countOne and CountTwo used to keep players socres
+  //set countone = 0;
 var countOne = 0;
+  //scorePlayerOne use querySelector to target value in table
 var scorePlayerOne = document.querySelector('.scoreOne');
 var countTwo = 0;
 var scorePlayerTwo = document.querySelector('.scoreTwo');
 
+
+
+
     //create a variable to target the gameStatus class in HTML
-    //use document.querySelector('.classname) takes a class name as parameter
 var gameStatus = document.querySelector('.gameStatus')
 
 
-    //gameOn i status of the get true= on false = off;
+    //gameOn is status of the game true= on gone false = play over;
 var gameOn = true;
+
     //set a current player X: tic tac toe x player always starts first
 var currentPlayer = "X";
 
-    //openBoard is an array of empty 9 strings represting the beginning of a clean board
+    //board is an array of empty 9 strings represting the beginning of a clean board
 var board = ['','','','','','','','',''];
+
+
+
 
     //palyerTurn function takes in a the currentplayer as a parameter
 var playerTurn = function (player){
       //returns  a message in backtics; so it can be rendered to the dom
       //message will include player that is passed as parameter
+      //if player is X assigne player to personOne = name;
       if(player === "X"){
         player = personOne;
       }
+      //if player = O set player to personTwo = name;
       if(player === "O"){
         player = personTwo;
       }
-
-  return `IT IS YOUR TURN ${player}`;
+      //return a message containing players name
+  return `${player}'s TURN`;
 };
 
-var winMessage = function(player){
 
+
+  //winMessage takes in a player as a parameter
+  //returns a message with the winning player
+  //and adds a win to the count of player
+var winMessage = function(player){
+  //if the player is X
   if(player === "X"){
+    //player = player one name
     player = personOne;
+    //add one to the scoer
     countOne ++;
+    //render the new count of player one
     scorePlayerOne.innerHTML= countOne;
   }
+  //if player is O
   if(player === "O"){
+    //set player you the name of player two
     player = personTwo;
+    //add one win to the count of player two
     countTwo ++;
+    //render the new score to player two score
     scorePlayerTwo.innerHTML= countTwo;
   }
-
-
-  return `${player} WON!!! PLAY AGAIN!`
+  //return a message containing the current game winner
+  return `${player} WON!!!`
 }
+
+
+
+
 
     //use .innerHTML to render a message to HTML page under class .gameStatus
     //gameStatus was delcared at top of page targeting .gameStatus class: which is an h2 element
     //will display below the board
     //with whos turn to move it is
 gameStatus.innerHTML = playerTurn(currentPlayer);
+
+
+
+
+
 
     //event listener functions
 var squarePlayed = function(clickedSquare, index)
@@ -75,14 +114,24 @@ var squarePlayed = function(clickedSquare, index)
   clickedSquare.target.innerHTML= currentPlayer;
 };
 
+
+  //playerChange function will change player turns
 var playerChange = function(){
+  //if current player is X set currentplayer to O
   if(currentPlayer==="X"){
     currentPlayer = "O";
   }else{
+    //else current player is O and needs ot be X
     currentPlayer = "X";
   };
+    //render to dom in gameStatus call Player Turn to set the turn to currentplayer and
+    // grab the message that needs to be rendered
   gameStatus.innerHTML = playerTurn(currentPlayer);
 };
+
+
+
+
     //winArray contains all the winning possibities of a simple 3x3 tic tac toe game
 var winArray = [
   [0,1,2],
@@ -95,6 +144,8 @@ var winArray = [
   [2,4,6]
 ];
 
+
+
      //check play is where the tic tok logic happens will be invoked every time there is
      //a click on the board
 var checkPlay = function(){
@@ -102,7 +153,7 @@ var checkPlay = function(){
       // if gameState= true there square selected was a winning move
   var winningState = false;
       //for loop to iterate through winArray possiblities
-  for(var i = 0; i<winArray.length; i++){
+  for(var i = 0; i < winArray.length; i++){
       //win is set to one winning combination at a time
     var win = winArray[i];
       //checkOne will be set to the index 0 of winning combo: win[0]= 0,3,6,0,1,2,0,2
@@ -126,7 +177,7 @@ var checkPlay = function(){
     }
        //if winning start is true current player won
     if(winningState){
-      //render to dom the winning message
+      //render a winning message to dom with currentplayer
       gameStatus.innerHTML = winMessage(currentPlayer);
         //set gameOn to false because the game is over
       gameOn=false;
@@ -141,14 +192,16 @@ var checkPlay = function(){
       //if tie is true the game is a tie
     if(tie){
       //return a tie message to the dom
-     return gameStatus.innerHTML = `THE GAME IS A DRAW! PLAY AGAIN!`
+     return gameStatus.innerHTML = `TIE! CLEAR THE BOARD TO PLAY AGAIN!`
     }
-
-
   }
   //invoke playerchange to change current player
   playerChange();
 };
+
+
+
+
 
       //handleSquareClick takes in a cliick event as a parameter
 var handleSquareClick = function(click){
@@ -173,13 +226,29 @@ var handleSquareClick = function(click){
   checkPlay();
 };
 
+
+
+
+    //lost function takes in the current winning player and returns the losing player
+    //used when resetting the board
+    //loser will move first on the next game
+var lost= function(player)
+{
+  if(player ==="X"){
+    return "O"
+  }
+  if(player ==="O"){
+    return "X"
+  }
+};
+
+
     //restartGameClick handles the click of a restart button
 var restartGameClick = function(click){
       //set game to true
   gameOn=true;
      //reset current play to X
-
-  currentPlayer = player;
+  currentPlayer = lost(currentPlayer);
       //clear the open board in our JS
   board = ['','','','','','','','',''];
       //change the rendered message on our dom to the reset current player
@@ -194,6 +263,9 @@ var restartGameClick = function(click){
 
 };
 
+
+
+
     //add eventlistener to every square in the board
     //document.querySelectorALl returns an array containing all the squares
 var squares = document.querySelectorAll('.square');
@@ -202,21 +274,33 @@ for(var i = 0; i<squares.length; i++){
       //add event listner to every square with addEvenListener('click',method to handle click);
   squares[i].addEventListener('click',handleSquareClick);
 };
-    //document.querySelectorAll('.square').forEach(square => square.addEventListener('click',handleSquareClick));
+
+
+
+
 
     //add an event listener to the restart button
     // use .document.querySelecto('class') so select just the resatrt game button
 var restart = document.querySelector('.gameRestart');
     //use. addEventListener('cick,method) to set an even listenter
 restart.addEventListener('click',restartGameClick);
-    //document.querySelector('.gameRestart').addEventListener('click',restartGameClick)
 
+
+  //reset player scores will reset the players scores
 var resetPlayerScores= function(){
+      //countOne set to 0
       countOne = 0;
+      //render score to dom
       scorePlayerOne.innerHTML= countOne;
+      //countTwo set to 0
       countTwo= 0;
+      //render score to table;
       scorePlayerTwo.innerHTML= countTwo;
 }
 
+
+
+  //resectScore targets the score reset button
 var resestScores = document.querySelector('.scoreRestart');
+  //add eventListen click and resetPlayerScores as parameters
 resestScores.addEventListener('click',resetPlayerScores);
