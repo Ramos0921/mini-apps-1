@@ -57,15 +57,16 @@ app.post('/text',(req,res)=>{
       }
 
       recurse(data);
-      console.log(totalRows);
+
       fs.appendFile('data.csv',totalRows,()=>{
-        fs.readFile(path.join(__dirname+'data.csv'),(err,data)=>{
-          res.send(data);
-        })
+
+        res.sendFile(path.join(__dirname,'data.csv'));
       })
+
     })
 
   })
+
 })
 
 app.listen(app.get('port'),()=>{

@@ -2,17 +2,27 @@
 <html lang ="en">
 <head>
   <meta charset="uft-8">
-  <title>Title</title>
+  <title>CSV GENERATOR</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="app.js"></script>
 </head>
 <body>
   <h1>CSV GENERATOR</h1>
+  <div id = 'app'></div>
+  <script>
+    $(function(){
+      app.initiate();
+    });
+  </script>
 
+  <!--before jquery
   <form id = "textArea" name = "textArea" method = "POST" action = "/text" >
     <textarea id = "textArea" name = "textArea" rows ="4" cols="25" >
     </textarea>
     <input type = "submit" value = "submit">
   </form>
-  <script src = "app.js"></script>
+   <script src = "app.js"></script>
+  -->
 </body>
 
 </html>
