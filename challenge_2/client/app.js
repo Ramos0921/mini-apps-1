@@ -20,6 +20,7 @@ var app ={
       data: JSON.stringify(userData),
       contentType: 'application/json',
       success: function(data){
+
         app.render(data);
       },
       error: function(error){
@@ -30,6 +31,7 @@ var app ={
   },
 
   render: function(data){
+    console.log(typeof data);
     $('#app').append(data);
   }
 

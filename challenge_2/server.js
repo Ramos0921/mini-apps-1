@@ -59,8 +59,13 @@ app.post('/text',(req,res)=>{
       recurse(data);
 
       fs.appendFile('data.csv',totalRows,()=>{
+        fs.readFile(path.join(__dirname ,'data.csv'), (err, data) =>
+        {
+          console.log(data)
+          res.send(data)
 
-        res.sendFile(path.join(__dirname,'data.csv'));
+        });
+        //res.sendFile(path.join(__dirname,'data.csv'));
       })
 
     })

@@ -1,0 +1,25 @@
+body{
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+table{
+  background-color: gray;
+  font-size: 60px;
+  height: 150px;
+  width:60%;
+  padding:20px;
+  border: 3px solid black;
+  table-layout: fixed;
+  justify-content: center;
+}
+
+th, td{
+  background-color: white;
+  border: 1px solid black;
+  text-align: center;
+  border-radius:100px;
+  width:30px;
+  height: 40px;
+  table-layout: fixed;
+  justify-content: center;
+}
